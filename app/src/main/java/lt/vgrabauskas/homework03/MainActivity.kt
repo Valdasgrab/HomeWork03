@@ -1,9 +1,7 @@
 package lt.vgrabauskas.homework03
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
@@ -11,12 +9,10 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    val TAG = "arrays_tag"
     lateinit var arrayListView: ListView
     lateinit var adapter: ArrayAdapter<String>
     lateinit var buttonFizzBuzz: Button
     lateinit var buttonFizzBuzzBonus: Button
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,17 +36,13 @@ class MainActivity : AppCompatActivity() {
 
         for (number in 1..100) {
             if (number % 3 == 0 && number % 5 == 0) {
-                Log.i(TAG, " FIZZBUZZ")
-                wordArray.set(number - 1, "FIZZBUZZ")
+                wordArray[number - 1] = "FIZZBUZZ"
             } else if (number % 5 == 0) {
-                Log.i(TAG, " BUZZ")
-                wordArray.set(number - 1, "BUZZ")
+                wordArray[number - 1] = "BUZZ"
             } else if (number % 3 == 0) {
-                wordArray.set(number - 1, "FIZZ")
-                Log.i(TAG, " fizz")
+                wordArray[number - 1] = "FIZZ"
             } else {
-                wordArray.set(number - 1, "$number")
-                Log.i(TAG, " $number")
+                wordArray[number - 1] = "$number"
             }
         }
 
@@ -60,8 +52,7 @@ class MainActivity : AppCompatActivity() {
         arrayListView.adapter = adapter
 
         arrayListView.setOnItemClickListener { adapterView, view, position, id ->
-            val selectedItem = adapterView.getItemAtPosition(position)
-            Log.i(TAG, "Clicked on $selectedItem of position $position")
+            adapterView.getItemAtPosition(position)
         }
     }
 
@@ -76,17 +67,13 @@ class MainActivity : AppCompatActivity() {
         val wordArray = arrayOfNulls<String>(size)
         for (number in 0 until size) {
             if (generateNumber % 3 == 0 && generateNumber % 5 == 0) {
-                Log.i(TAG, " FIZZBUZZ")
-                wordArray.set(number, "FIZZBUZZ")
+                wordArray[number] = "FIZZBUZZ"
             } else if (generateNumber % 5 == 0) {
-                Log.i(TAG, " BUZZ")
-                wordArray.set(number, "BUZZ")
+                wordArray[number] = "BUZZ"
             } else if (generateNumber % 3 == 0) {
-                wordArray.set(number, "FIZZ")
-                Log.i(TAG, " fizz")
+                wordArray[number] = "FIZZ"
             } else {
-                wordArray.set(number, "$generateNumber")
-                Log.i(TAG, " $generateNumber")
+                wordArray[number] = "$generateNumber"
             }
             generateNumber++
         }
@@ -97,8 +84,7 @@ class MainActivity : AppCompatActivity() {
         arrayListView.adapter = adapter
 
         arrayListView.setOnItemClickListener { adapterView, view, position, id ->
-            val selectedItem = adapterView.getItemAtPosition(position)
-            Log.i(TAG, "Clicked on $selectedItem of position $position")
+            adapterView.getItemAtPosition(position)
         }
     }
 }
