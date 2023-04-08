@@ -28,12 +28,10 @@ class MainActivity : AppCompatActivity() {
         buttonFizzBuzzBonus.setOnClickListener {
             fizzBuzzBonus()
         }
-
     }
 
     private fun fizzBuzz() {
         val wordArray = arrayOfNulls<String>(100)
-
         for (number in 1..100) {
             if (number % 3 == 0 && number % 5 == 0) {
                 wordArray[number - 1] = "FIZZBUZZ"
@@ -45,19 +43,10 @@ class MainActivity : AppCompatActivity() {
                 wordArray[number - 1] = "$number"
             }
         }
-
-        adapter = ArrayAdapter(
-            this, android.R.layout.simple_expandable_list_item_1, wordArray
-        )
-        arrayListView.adapter = adapter
-
-        arrayListView.setOnItemClickListener { adapterView, view, position, id ->
-            adapterView.getItemAtPosition(position)
-        }
+        displayResult(wordArray)
     }
 
     private fun fizzBuzzBonus() {
-
         var generateNumber = Random.nextInt(-50, 50)
         val cycleSpan = Random.nextInt(50, 150)
         var size = 0
@@ -77,9 +66,12 @@ class MainActivity : AppCompatActivity() {
             }
             generateNumber++
         }
+        displayResult(wordArray)
+    }
 
+    private fun displayResult (array: Array<String?>){
         adapter = ArrayAdapter(
-            this, android.R.layout.simple_expandable_list_item_1, wordArray
+            this, android.R.layout.simple_expandable_list_item_1, array
         )
         arrayListView.adapter = adapter
 
